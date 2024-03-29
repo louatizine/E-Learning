@@ -1,30 +1,25 @@
 <?php
 include('../connexion/conx.php');
 
+$sql = "SELECT * FROM popular_courses";
+$result = mysqli_query($conn, $sql);
+$category = mysqli_fetch_all($result, MYSQLI_ASSOC);
+mysqli_free_result($result);
 
-//sql
+if(isset($_POST['enroll'])) {
+    $course_id = $_POST['course_id'];
+    $course_title = $_POST['course_title'];
+    $course_level = $_POST['course_level'];
+    $course_hours = $_POST['course_hours'];
+    $course_price = $_POST['course_price'];
+    
+    $sql = "INSERT INTO enrolled_courses (course_id, title, level, nb_heure, price) 
+            VALUES ('$course_id', '$course_title', '$course_level', '$course_hours', '$course_price')";
+    mysqli_query($conn, $sql);
+}
 
-$sql = "select * from popular_courses";
-
-// fetch
-$result = mysqli_query($conn,$sql);
-
-//fetching all 
-$category =  mysqli_fetch_all($result,MYSQLI_ASSOC);
-
-//free res
-
- mysqli_free_result($result);
-
- //close
- mysqli_close($conn);
-
-
-
-
+mysqli_close($conn);
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -81,6 +76,14 @@ $category =  mysqli_fetch_all($result,MYSQLI_ASSOC);
                             <div class="d-flex">
                                 <small class="flex-fill text-left p-2 px-2"><i class="fa fa-clock me-2"></i><?php echo ($item['nb_heure']) ?></small>
                                 <small class="py-1 px-2 fw-bold fs-6 text-center"><?php echo ($item['price']) ?></small>
+                                <form method="post" action="">
+                                    <input type="hidden" name="course_id" value="<?php echo $item['id']; ?>">
+                                    <input type="hidden" name="course_title" value="<?php echo $item['title']; ?>">
+                                    <input type="hidden" name="course_level" value="<?php echo $item['level']; ?>">
+                                    <input type="hidden" name="course_hours" value="<?php echo $item['nb_heure']; ?>">
+                                    <input type="hidden" name="course_price" value="<?php echo $item['price']; ?>">
+                                    <button type="submit" name="enroll" class="btn btn-primary">Enroll Now</button>
+                                </form>
                                 <small class=" text-primary py-1 px-2 fw-bold fs-6" style="float:right;"><a href="#">Enroll Now</a><i class="fa fa-chevron-right me-2 fs-10"></i></small>
                             </div>
                         </div>
@@ -94,6 +97,5 @@ $category =  mysqli_fetch_all($result,MYSQLI_ASSOC);
     </div>
     <!-- Courses End -->
 </body>
-
 
 </html>

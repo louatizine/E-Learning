@@ -22,6 +22,8 @@ $category =  mysqli_fetch_all($result,MYSQLI_ASSOC);
 
 
 
+
+
 ?>
 
 
@@ -79,7 +81,6 @@ $category =  mysqli_fetch_all($result,MYSQLI_ASSOC);
                 <?php endforeach ;?>
             </div>
         </div>
-    </div>
     </div>
 </body>
 

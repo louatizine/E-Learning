@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
             header('location:admin_page.php');
         } elseif ($row['user_type'] == 'user') {
             $_SESSION['user_name'] = $row['name'];
-            header('location:single.php');
+            header('location:user_index.php');
         }
     } else {
         $error[] = 'Incorrect email or password!';
