@@ -1,36 +1,4 @@
-<?php
-include('../connexion/conx.php');
 
-
-
-if (isset($_POST['submit'])) {
-
-    $name = mysqli_real_escape_string($conn, $_POST['name']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $pass = md5($_POST['password']);
-    $cpass = md5($_POST['cpassword']);
-    $user_type = $_POST['user_type'];
-
-    $select = " SELECT * FROM user_form WHERE email = '$email' && password = '$pass' ";
-
-    $result = mysqli_query($conn, $select);
-
-    if (mysqli_num_rows($result) > 0) {
-
-        $error[] = 'user already exist!';
-    } else {
-
-        if ($pass != $cpass) {
-            $error[] = 'password not matched!';
-        } else {
-            $insert = "INSERT INTO user_form(name, email, password, user_type) VALUES('$name','$email','$pass','$user_type')";
-            mysqli_query($conn, $insert);
-            header('location:login.php');
-        }
-    }
-};
-
-?>
 
 
 <!DOCTYPE html>
@@ -67,7 +35,7 @@ if (isset($_POST['submit'])) {
     <style>
     body {
         font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
+        background-color: #FFFFFF;
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -76,7 +44,7 @@ if (isset($_POST['submit'])) {
         max-width: 600px;
         margin: 50px auto;
         padding: 20px;
-        background-color: #fff;
+        background-color: #FFFFFF;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
@@ -151,34 +119,39 @@ if (isset($_POST['submit'])) {
 
 
     <div id="container">
-    <h2>Signup</h2>
-    <form action="" method="post">
+    <h1 class="mb-5 bg-white text-center px-3">Signup</h1>
+   
+    <form action="signup_submit.php" method="post" class="row g-4 wow fadeInUp" data-wow-delay="0.5s ">
         <div id="form-group">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            
+            <label for="name" style="color:black">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
         </div>
         <div id="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <label for="email" style="color:black">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
         </div>
         <div id="form-group">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            <label for="password" style="color:black">Password:</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
         </div>
         <div id="form-group">
-            <label for="cpassword">Confirm Password:</label>
-            <input type="password" id="cpassword" name="cpassword" placeholder="Confirm your password" required>
+            <label for="cpassword"style="color:black">Confirm Password:</label>
+            <input type="password" class="form-control" id="cpassword" name="cpassword" placeholder="Confirm your password" required>
         </div>
         <div id="form-group">
-            <label for="user_type">User Type:</label>
+            <label for="user_type" style="color:black">User Type:</label>
             <select id="user_type" name="user_type" required>
                 <option value="user">Student</option>
                 <option value="admin">Instructor</option>
             </select>
         </div>
-        <input type="submit" name="submit" value="Register now">
-        <p>Already have an account? <a href="login.php">Login now</a></p>
+        <center>
+        <input type="submit" name="submit" value="Register now" class="btn text-light w-100 py-3"style="background-color:#fb873f">
+        <p>Already have an account? <a href="login.php" >Login now</a></p>
+        </center>
     </form>
+  
 </div>
     <!-- Signup End -->
     <?php include("../repite/footer.php"); ?>

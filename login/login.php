@@ -1,32 +1,4 @@
-<?php
-require_once("../connexion/conx.php");
 
-//session_start();
-
-if (isset($_POST['submit'])) {
-    $name = mysqli_real_escape_string($conn, $_POST['name']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $pass = md5($_POST['password']);
-    $cpass = md5($_POST['cpassword']);
-    $user_type = $_POST['user_type'];
-
-    $select = "SELECT * FROM user_form WHERE email = '$email' && password = '$pass'";
-    $result = mysqli_query($conn, $select);
-
-    if (mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_array($result);
-        if ($row['user_type'] == 'admin') {
-            $_SESSION['admin_name'] = $row['name'];
-            header('location:admin_page.php');
-        } elseif ($row['user_type'] == 'user') {
-            $_SESSION['user_name'] = $row['name'];
-            header('location:user_index.php');
-        }
-    } else {
-        $error[] = 'Incorrect email or password!';
-    }
-}
-?>
 
 
 
@@ -54,7 +26,7 @@ if (isset($_POST['submit'])) {
         max-width: 400px;
         margin: 0 auto;
         padding: 20px;
-        background-color: #f9f9f9;
+        background-color:#FFFFFF;
         border-radius: 10px;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     }
@@ -110,7 +82,7 @@ if (isset($_POST['submit'])) {
 <body>
 <?php include '../repite/header.php'; ?>
 <div class="container-fluid bg-primary py-5 mb-5 page-header">
-    <div class="container py-5">
+    <div class="container py-5" style="ba">
         <div class="row justify-content-center">
             <div class="col-lg-10 text-center">
                 <h1 class="display-3 text-white animated slideInDown">Login</h1>
@@ -128,17 +100,17 @@ if (isset($_POST['submit'])) {
     <div class="container">
         <div class="row g-4 wow fadeInUp" data-wow-delay="0.5s ">
             <center>
-                <form action="" method="post">
-                    <h3>Login now</h3>
+                <form action="login_submit.php" method="post" class="shadow p-4" style="max-width: 550px;">
+                <h1 class="mb-5 bg-white text-center px-3">Login</h1>
                     <?php if (isset($error)) : ?>
                         <?php foreach ($error as $error_msg) : ?>
-                            <span class="error-msg"><?php echo $error_msg; ?></span>
+                            <span class="error-msg "><?php echo $error_msg; ?></span>
                         <?php endforeach; ?>
                     <?php endif; ?>
-                    <input type="email" id="email" name="email" required placeholder="Enter your email">
-                    <input type="password" id="password" name="password" required placeholder="Enter your password">
-                    <input type="submit" id="submit" name="submit" value="Login now" class="form-btn">
-                    <p>Don't have an account? <a href="register_form.php">Register now</a></p>
+                    <input type="email" id="email" name="email" class="form-control"required placeholder="Enter your email">
+                    <input type="password" id="password"  class="form-control"name="password" required placeholder="Enter your password">
+                    <input type="submit" id="submit" name="submit" value="Login now" class="btn text-light w-100 py-3" style="background-color:#fb873f">
+                    <p>Don't have an account? <a href="signup.php">Register now</a></p>
                 </form>
             </center>
         </div>
