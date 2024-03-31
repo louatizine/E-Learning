@@ -1,6 +1,32 @@
+<?php
+require_once("../connexion/conx.php");
 
+if (isset($_POST['submit'])) {
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $pass = md5($_POST['password']);
+    $cpass = md5($_POST['cpassword']);
+    $user_type = $_POST['user_type'];
 
+    $select = "SELECT * FROM user_form WHERE email = '$email' && password = '$pass'";
+    $result = mysqli_query($conn, $select);
 
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_array($result);
+        $user_id = $row['id']; // Récupération de l'ID de l'utilisateur depuis la base de données
+        if ($row['user_type'] == 'admin') {
+            $_SESSION['admin_name'] = $row['name'];
+            header('location:admin_page.php');
+        } elseif ($row['user_type'] == 'user') {
+            $_SESSION['user_name'] = $row['name'];
+            $_SESSION['user_id'] = $user_id; // Stockage de l'ID de l'utilisateur dans la session
+            header('location:user_index.php');
+        }
+    } else {
+        $error[] = 'Incorrect email or password!';
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -100,7 +126,7 @@
     <div class="container">
         <div class="row g-4 wow fadeInUp" data-wow-delay="0.5s ">
             <center>
-                <form action="login_submit.php" method="post" class="shadow p-4" style="max-width: 550px;">
+                <form action="" method="post" class="shadow p-4" style="max-width: 550px;">
                 <h1 class="mb-5 bg-white text-center px-3">Login</h1>
                     <?php if (isset($error)) : ?>
                         <?php foreach ($error as $error_msg) : ?>
@@ -118,6 +144,19 @@
 </div>
 <?php include("../repite/footer.php"); ?>
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+<!-- Script JavaScript pour enregistrer l'ID de l'utilisateur dans le localStorage -->
+<script>
+    // Récupérer l'ID de l'utilisateur depuis la session PHP
+    var userId = <?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 'null'; ?>;
+
+    // Vérifier si l'ID de l'utilisateur est valide
+    if (userId) {
+        // Stocker l'ID de l'utilisateur dans le localStorage
+        window.localStorage.setItem('user_id', userId);
+        console.log(window.localStorage);
+    }
+</script>
+
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="lib/wow/wow.min.js"></script>
