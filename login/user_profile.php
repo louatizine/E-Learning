@@ -1,10 +1,9 @@
 <?php
 require_once("../connexion/conx.php");
-//session_start();
+session_start();
 
 // Retrieve user data from the database
-$_SESSION["id"] = 1; // User's session
-$sessionId = $_SESSION["id"];
+$sessionId= $_SESSION['user_id'] ; 
 $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM user_form WHERE id = $sessionId"));
 
 // Check if the form is submitted

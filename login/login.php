@@ -1,24 +1,25 @@
 <?php
 require_once("../connexion/conx.php");
-
+session_start();
 if (isset($_POST['submit'])) {
-    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    // $name = mysqli_real_escape_string($conn, $_POST['name']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $pass = md5($_POST['password']);
-    $cpass = md5($_POST['cpassword']);
-    $user_type = $_POST['user_type'];
+    // $cpass = md5($_POST['cpassword']);
+    // $user_type = $_POST['user_type'];
 
     $select = "SELECT * FROM user_form WHERE email = '$email' && password = '$pass'";
     $result = mysqli_query($conn, $select);
 
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_array($result);
+        var_dump($row[0]);
         $user_id = $row['id']; // Récupération de l'ID de l'utilisateur depuis la base de données
         if ($row['user_type'] == 'admin') {
-            $_SESSION['admin_name'] = $row['name'];
-            header('location:admin_page.php');
+            $_SESSION['admin_name'] = $row['uname'];
+            // header('location:admin_page.php');
         } elseif ($row['user_type'] == 'user') {
-            $_SESSION['user_name'] = $row['name'];
+            $_SESSION['user_name'] = $row['uname'];
             $_SESSION['user_id'] = $user_id; // Stockage de l'ID de l'utilisateur dans la session
             header('location:user_index.php');
         }
