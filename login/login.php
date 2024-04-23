@@ -22,6 +22,10 @@ if (isset($_POST['submit'])) {
             $_SESSION['user_name'] = $row['uname'];
             $_SESSION['user_id'] = $user_id; // Stockage de l'ID de l'utilisateur dans la session
             header('location:user_index.php');
+        } elseif ($row['user_type'] == 'instructor') {
+            $_SESSION['user_name'] = $row['uname'];
+            $_SESSION['user_id'] = $user_id; // Stockage de l'ID de l'utilisateur dans la session
+            header('location:single.php');
         }
     } else {
         $error[] = 'Incorrect email or password!';
@@ -145,18 +149,7 @@ if (isset($_POST['submit'])) {
 </div>
 <?php include("../repite/footer.php"); ?>
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-<!-- Script JavaScript pour enregistrer l'ID de l'utilisateur dans le localStorage -->
-<script>
-    // Récupérer l'ID de l'utilisateur depuis la session PHP
-    var userId = <?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 'null'; ?>;
 
-    // Vérifier si l'ID de l'utilisateur est valide
-    if (userId) {
-        // Stocker l'ID de l'utilisateur dans le localStorage
-        window.localStorage.setItem('user_id', userId);
-        console.log(window.localStorage);
-    }
-</script>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

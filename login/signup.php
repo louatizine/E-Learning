@@ -143,7 +143,7 @@
             <label for="user_type" style="color:black">User Type:</label>
             <select id="user_type" name="user_type" required>
                 <option value="user">Student</option>
-                <option value="admin">Instructor</option>
+                <option value="instructor">Instructor</option>
             </select>
         </div>
         <center>
