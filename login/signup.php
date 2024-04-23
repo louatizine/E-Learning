@@ -125,7 +125,7 @@
         <div id="form-group">
             
             <label for="name" style="color:black">Name:</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+            <input type="text" class="form-control" id="name" name="uname" placeholder="Enter your name" required>
         </div>
         <div id="form-group">
             <label for="email" style="color:black">Email:</label>
