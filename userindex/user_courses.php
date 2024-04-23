@@ -16,7 +16,6 @@ mysqli_close($conn);
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,30 +40,68 @@ mysqli_close($conn);
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
+
+    <!-- Custom CSS Styles -->
+    <style>
+        .course-item {
+    border-radius: 15px;
+    border: 1px solid #e0e0e0;
+    transition: transform 0.3s ease;
+}
+
+.course-item:hover {
+    transform: translateY(-5px);
+}
+
+.course-item .p-4 {
+    background-color: #fff;
+}
+
+.course-item h5 {
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.course-item p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.course-item strong {
+    font-weight: bold;
+    margin-right: 5px;
+}
+    </style>
 </head>
 
 <body>
-    <div class="container-xxl py-5">
-        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h1 class="mb-5" style="color: #fb873f;">Enrolled Courses</h1>
-        </div>
-        <div class="container">
-            <div class="row g-3 py-3">
-                <?php foreach ($enrolled_courses as $course): ?>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="course-item shadow">
-                            <div class="p-2 pb-0">
-                                <h5 class="mb-1"><?php echo $course['title']; ?></h5>
-                                <p>Level: <?php echo $course['level']; ?></p>
-                                <p>Duration: <?php echo $course['nb_heure']; ?></p>
-                                <p>Price: <?php echo $course['price']; ?></p>
-                            </div>
+<?php include("../repite/user_header.php"); ?>
+
+<div class="container-xxl py-5">
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+        <h1 class="mb-5" style="color: #fb873f;">Enrolled Courses</h1>
+    </div>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3 py-3">
+            <?php foreach ($enrolled_courses as $course): ?>
+                <div class="col wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="course-item shadow">
+                        <div class="p-4">
+                            <h5 class="mb-3"><?php echo $course['title']; ?></h5>
+                            <p class="mb-2"><strong>Level:</strong> <?php echo $course['level']; ?></p>
+                            <p class="mb-2"><strong>Duration:</strong> <?php echo $course['nb_heure']; ?></p>
+                            <p class="mb-2"><strong>Price:</strong> <?php echo $course['price']; ?></p>
                         </div>
                     </div>
-                <?php endforeach; ?>
-            </div>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
+</div>
+
+<?php include("../repite/footer.php"); ?>
+
 </body>
 
 </html>
