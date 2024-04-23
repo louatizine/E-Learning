@@ -174,7 +174,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="inputs">
                 <div class="input-group">
                     <label for="first_name">First Name:</label>
-                    <input type="text" id="first_name" name="name" value="<?php echo $user['uname']; ?>" required>
+                    <input type="text" id="first_name" name="uname" value="<?php echo $user['uname']; ?>" required>
                 </div>
                 <div class="input-group">
                     <label for="email">Email Address:</label>

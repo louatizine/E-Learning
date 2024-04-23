@@ -1,5 +1,15 @@
 <?php
+// session_start(); // Start the session if not already started
+echo "Session User ID: " . $_SESSION['user_id']; // Debug statement
+
 include('../connexion/conx.php');
+
+$user_id = $_SESSION['user_id'];
+// if(isset($_SESSION['user_id'])) {
+//     $user_id = $_SESSION['user_id']; // Get the user ID from the session
+// } else {
+//     $user_id = 1; 
+// }
 
 $sql = "SELECT * FROM popular_courses";
 $result = mysqli_query($conn, $sql);
@@ -13,13 +23,14 @@ if(isset($_POST['enroll'])) {
     $course_hours = $_POST['course_hours'];
     $course_price = $_POST['course_price'];
     
-    $sql = "INSERT INTO enrolled_courses (course_id, title, level, nb_heure, price) 
-            VALUES ('$course_id', '$course_title', '$course_level', '$course_hours', '$course_price')";
+    $sql = "INSERT INTO enrolled_courses (course_id, title, level, nb_heure, price, user_id) 
+            VALUES ('$course_id', '$course_title', '$course_level', '$course_hours', '$course_price', $user_id)";
     mysqli_query($conn, $sql);
 }
 
 mysqli_close($conn);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -84,7 +95,6 @@ mysqli_close($conn);
                                     <input type="hidden" name="course_price" value="<?php echo $item['price']; ?>">
                                     <button type="submit" name="enroll" class="btn btn-primary">Enroll Now</button>
                                 </form>
-                                <small class=" text-primary py-1 px-2 fw-bold fs-6" style="float:right;"><a href="#">Enroll Now</a><i class="fa fa-chevron-right me-2 fs-10"></i></small>
                             </div>
                         </div>
                     </div>

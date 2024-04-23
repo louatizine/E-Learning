@@ -1,9 +1,7 @@
 <?php
 include('../connexion/conx.php');
 
-
 //sql
-
 $sql = "select * from category";
 
 // fetch
@@ -13,21 +11,12 @@ $result = mysqli_query($conn,$sql);
 $category =  mysqli_fetch_all($result,MYSQLI_ASSOC);
 
 //free res
-
  mysqli_free_result($result);
 
  //close
  mysqli_close($conn);
 
-
-
-
-
-
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
