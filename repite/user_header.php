@@ -12,7 +12,7 @@
             <a href="../userindex/user_courses.php" class="nav-item nav-link">Courses</a>
             <a href="../userindex/user_contact.php" class="nav-item nav-link">Contact</a>
             <a href="../login/user_profile.php" class="nav-item nav-link"><i class="fa fa-user"></i></a>
-            <a href="../logout.php" class="nav-item nav-link">Logout</a> <!-- Added logout button -->
+            <a href="../login/logout.php" class="nav-item nav-link">Logout</a> <!-- Added logout button -->
             <a href="#" class="nav-item nav-link">
                 <div id="google_translate_element"></div>
             </a>
