@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
         $user_id = $row['id']; // Récupération de l'ID de l'utilisateur depuis la base de données
         if ($row['user_type'] == 'admin') {
             $_SESSION['admin_name'] = $row['uname'];
-            // header('location:admin_page.php');
+             header('location:admin_dashboard.php');
         } elseif ($row['user_type'] == 'user') {
             $_SESSION['user_name'] = $row['uname'];
             $_SESSION['user_id'] = $user_id; // Stockage de l'ID de l'utilisateur dans la session
@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Secret Coder: Login</title>
+<title> Login</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="" name="keywords">
 <meta content="" name="description">

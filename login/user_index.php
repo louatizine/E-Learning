@@ -37,7 +37,6 @@ session_start();
     <?php include("../repite/user_header.php"); ?>
     <?php include '../indexFolder/carousel.php'; ?>
     <?php include '../indexFolder/services.php'; ?>
-    <?php include '../indexFolder/services.php'; ?>
     <?php include '../indexFolder/Banner.php'; ?>
     <?php include '../indexFolder/category.php'; ?>
    <?php include '../indexFolder/courses.php'; ?>

@@ -8,10 +8,6 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a href="../login/user_index.php" class="nav-item nav-link active">Home</a>
-            <a href="../userindex/user_courses.php" class="nav-item nav-link">Courses</a>
-            <a href="../userindex/user_contact.php" class="nav-item nav-link">Contact</a>
-            <a href="../login/profile.php" class="nav-item nav-link"><i class="fa fa-user"></i></a>
             <a href="../login/logout.php" class="nav-item nav-link">Logout</a> <!-- Added logout button -->
             <a href="#" class="nav-item nav-link">
                 <div id="google_translate_element"></div>

@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Secret Coder : Signup</title>
+    <title>Signup</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -121,36 +121,49 @@
     <div id="container">
     <h1 class="mb-5 bg-white text-center px-3">Signup</h1>
    
-    <form action="signup_submit.php" method="post" class="row g-4 wow fadeInUp" data-wow-delay="0.5s ">
-        <div id="form-group">
-            
-            <label for="name" style="color:black">Name:</label>
-            <input type="text" class="form-control" id="name" name="uname" placeholder="Enter your name" required>
-        </div>
-        <div id="form-group">
-            <label for="email" style="color:black">Email:</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
-        </div>
-        <div id="form-group">
-            <label for="password" style="color:black">Password:</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
-        </div>
-        <div id="form-group">
-            <label for="cpassword"style="color:black">Confirm Password:</label>
-            <input type="password" class="form-control" id="cpassword" name="cpassword" placeholder="Confirm your password" required>
-        </div>
-        <div id="form-group">
-            <label for="user_type" style="color:black">User Type:</label>
-            <select id="user_type" name="user_type" required>
-                <option value="user">Student</option>
-                <option value="instructor">Instructor</option>
-            </select>
-        </div>
-        <center>
-        <input type="submit" name="submit" value="Register now" class="btn text-light w-100 py-3"style="background-color:#fb873f">
-        <p>Already have an account? <a href="login.php" >Login now</a></p>
-        </center>
-    </form>
+    <form action="signup_submit.php" method="post" class="row g-4 wow fadeInUp" data-wow-delay="0.5s">
+    <!-- Existing form fields -->
+    <div id="form-group">
+        <label for="name" style="color:black">Name:</label>
+        <input type="text" class="form-control" id="name" name="uname" placeholder="Enter your name" required>
+    </div>
+    <div id="form-group">
+        <label for="email" style="color:black">Email:</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+    </div>
+    <div id="form-group">
+        <label for="password" style="color:black">Password:</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+    </div>
+    <div id="form-group">
+        <label for="cpassword" style="color:black">Confirm Password:</label>
+        <input type="password" class="form-control" id="cpassword" name="cpassword" placeholder="Confirm your password" required>
+    </div>
+    <div id="form-group">
+        <label for="user_type" style="color:black">User Type:</label>
+        <select id="user_type" name="user_type" required>
+            <option value="user">Student</option>
+            <option value="instructor">Instructor</option>
+        </select>
+    </div>
+    <!-- New fields for birthday and gender -->
+    <div id="form-group">
+        <label for="birthday" style="color:black">Birthday:</label>
+        <input type="date" class="form-control" id="birthday" name="birthday" required>
+    </div>
+    <div id="form-group">
+        <label for="gender" style="color:black">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+    </div>
+    <center>
+        <input type="submit" name="submit" value="Register now" class="btn text-light w-100 py-3" style="background-color:#fb873f">
+        <p>Already have an account? <a href="login.php">Login now</a></p>
+    </center>
+</form>
+
   
 </div>
     <!-- Signup End -->

@@ -1,8 +1,6 @@
 <?php
 include('../connexion/conx.php');
 
-
-
 if (isset($_POST['submit'])) {
 
     $name = mysqli_real_escape_string($conn, $_POST['uname']);
@@ -10,24 +8,27 @@ if (isset($_POST['submit'])) {
     $pass = md5($_POST['password']);
     $cpass = md5($_POST['cpassword']);
     $user_type = $_POST['user_type'];
+    $birthday = $_POST['birthday']; // Added
+    $gender = $_POST['gender']; // Added
 
-    $select = " SELECT * FROM user_form WHERE email = '$email' && password = '$pass' ";
+    $select = "SELECT * FROM user_form WHERE email = '$email'";
 
     $result = mysqli_query($conn, $select);
 
     if (mysqli_num_rows($result) > 0) {
-
-        $error[] = 'user already exist!';
+        $error[] = 'User already exists!';
     } else {
-
         if ($pass != $cpass) {
-            $error[] = 'password not matched!';
+            $error[] = 'Password not matched!';
         } else {
-            $insert = "INSERT INTO user_form(uname, email, password, user_type) VALUES('$name','$email','$pass','$user_type')";
-            mysqli_query($conn, $insert);
-            header('location:login.php');
+            $insert = "INSERT INTO user_form(uname, email, password, user_type, birthday, gender) VALUES('$name','$email','$pass','$user_type','$birthday','$gender')";
+            if (mysqli_query($conn, $insert)) {
+                header('location: login.php');
+                exit;
+            } else {
+                $error[] = 'Error inserting user data!';
+            }
         }
     }
-};
-
+}
 ?>

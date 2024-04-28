@@ -1,21 +1,20 @@
 <?php
 include('../connexion/conx.php');
 
-//sql
-$sql = "select * from category";
+// SQL query to fetch categories
+$sql = "SELECT * FROM category";
 
-// fetch
-$result = mysqli_query($conn,$sql);
+// Execute the query
+$result = mysqli_query($conn, $sql);
 
-//fetching all 
-$category =  mysqli_fetch_all($result,MYSQLI_ASSOC);
+// Fetch all categories
+$category = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-//free res
- mysqli_free_result($result);
+// Free result set
+mysqli_free_result($result);
 
- //close
- mysqli_close($conn);
-
+// Close the connection
+mysqli_close($conn);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,19 +54,20 @@ $category =  mysqli_fetch_all($result,MYSQLI_ASSOC);
                 <h1 class="mb-5" style="color: #fb873f;">Popular Topics to Explore</h1>
             </div>
             <div class="row g-2 m-2">
-            <?php foreach ($category as $item): ?>   
-
-                <div class="col-lg-3 col-md-6  text-center">
+                <?php foreach ($category as $item): ?>
+                <div class="col-lg-3 col-md-6 text-center">
                     <div class="content shadow p-3 mb-2 wow fadeInUp" data-wow-delay="0.3s">
-
-                        <img src="img/cat1.png" class="img-fluid" alt="categories"></i>
-
+                        <?php
+                        $image = $item['picture']; // Corrected accessing the 'picture' key
+                        ?>
+                        <!-- Image source modified to fetch image dynamically -->
+                        <img src="img/<?php echo $image; ?>" class="img-fluid" alt="<?php echo $item['title']; ?>">
                         <h5 class="my-2">
-                            <a href="#" class="text-center"><?php echo ($item['title']) ?></a>
+                            <a href="#" class="text-center"><?php echo $item['title']; ?></a>
                         </h5>
                     </div>
                 </div>
-                <?php endforeach ;?>
+            <?php endforeach; ?>
             </div>
         </div>
     </div>

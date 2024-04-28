@@ -43,11 +43,11 @@
     
                     <div class="col-lg-6 p-5 wow fadeInUp" data-wow-delay="0.3s">
     
-                        <h1 class="mb-4" style="color: #fb873f;">Become an Instructor</h1>
+                        <h1 class="mb-4" style="color: #fb873f;">Catch your Online  Courses</h1>
                         <p class="mb-4 text-white">Instructors from around the world teach millions of learners on Udemy. We provide
                             the tools and skills to teach what you love.</p>
     
-                        <a class="btn text-light py-3 mt-2" href="instructor.php">Start Teaching Today</a>
+                        <a class="btn text-light py-3 mt-2" href="instructor.php">Catch</a>
                     </div>
     
                 </div>
