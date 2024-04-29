@@ -85,16 +85,13 @@ mysqli_close($conn);
     <div class="container">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3 py-3">
             <?php foreach ($enrolled_courses as $course): ?>
-                <div class="col wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="course-item shadow">
-                        <div class="p-4">
-                            <h5 class="mb-3"><?php echo $course['title']; ?></h5>
-                            <p class="mb-2"><strong>Level:</strong> <?php echo $course['level']; ?></p>
-                            <p class="mb-2"><strong>Duration:</strong> <?php echo $course['nb_heure']; ?></p>
-                            <p class="mb-2"><strong>Price:</strong> <?php echo $course['price']; ?></p>
-                        </div>
-                    </div>
-                </div>
+                <div class="card">
+  <h5 class="card-header"> <?php echo $course['statut']; ?></h5>
+  <div class="card-body">
+    <h5 class="card-title"><?php echo $course['title']; ?></h5>
+    <a href="../login/single.php?course_id=<?php echo $course['course_id']; ?>" class="btn btn-primary">See More</a>
+  </div>
+</div>
             <?php endforeach; ?>
         </div>
     </div>
