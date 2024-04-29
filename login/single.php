@@ -1,3 +1,33 @@
+<?php
+session_start();
+
+include('../connexion/conx.php');
+
+// Check if the course ID is provided in the URL
+if (isset($_GET['course_id'])) {
+    // Sanitize the input to prevent SQL injection
+    $course_id = mysqli_real_escape_string($conn, $_GET['course_id']);
+
+    // Fetch course details from the database based on the provided course ID
+    $sql = "SELECT * FROM enrolled_courses WHERE course_id = $course_id";
+    $result = mysqli_query($conn, $sql);
+
+    // Check if a course is found with the provided ID
+    if ($result && mysqli_num_rows($result) > 0) {
+        $course = mysqli_fetch_assoc($result);
+    } else {
+        echo "Course not found";
+        exit;
+    }
+} else {
+    echo "Course ID not provided";
+    exit;
+}
+
+// Close the database connection
+mysqli_close($conn);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,7 +96,7 @@
 </style>
 
 <body>
-<?php include '../repite/header.php'; ?>
+<?php include '../repite/user_header.php'; ?>
 
     <!-- Header Start -->
     <div class="container-fluid bg-primary py-5 mb-5 page-header">
@@ -78,7 +108,7 @@
                             <ol class="breadcrumb justify-content-center">
                                 <li class="breadcrumb-item"><a class="text-white" href="index.php">Home</a></li>
                                 <li class="breadcrumb-item"><a class="text-white" href="courses.php">Course</a></li>
-                                <li class="breadcrumb-item text-white active" aria-current="page">HTML Course for Beginners</li>
+                                <li class="breadcrumb-item text-white active" aria-current="page"><?php echo $course['title']; ?></li>
                             </ol>
                         </nav>
                     </div>
@@ -98,7 +128,7 @@
                     <div class="row g-5 justify-content-center">
 
                         <div class="col-lg-12 wow fadeInUp" data-wow-delay="0.3s">
-                            <h2>HTML Course for Beginners</h2>
+                            <h2><?php echo $course['title']; ?></h2>
                             <p>Start at the beginning by learning HTML basics — an important foundation for building and editing web pages.
 
                             </p>
@@ -108,14 +138,14 @@
                                 <small style="margin-left: 15px;"><i class="fa fa-user-graduate"></i> 5.8L+
                                     Learners
                                 </small>
-                                <small style="margin-left: 15px;"><i class="fa fa-user"></i>Beginner</small>
-                                <small style="margin-left: 15px;"><i class="fa fa-clock me-2"></i> 2.0 Hrs</small>
+                                <small style="margin-left: 15px;"><i class="fa fa-user"></i><?php echo $course['statut']; ?></small>
+                                <small style="margin-left: 15px;"><i class="fa fa-clock me-2"></i> <?php echo $course['nb_heure']; ?></small>
 
                             </div>
                             <div class="image-div text-left mt-3">
                                 <img src="img/testimonial-2.jpg" alt=""
                                     style="height: 40px; width: 40px; border-radius: 50%;">
-                                <span style="margin-left: 10px;"><b>Instructor Name</b> - Zoe Bachman</span>
+                                <span style="margin-left: 10px;"><b>Instructor Name</b> -zine</span>
                             </div>
                         </div>
                     </div>
@@ -223,7 +253,7 @@
                                             style="height: 150px; width: 150px; border-radius: 50%;">
                                     </div>
                                     <div class="col-lg-9 col-md-6 mt-2">
-                                        <h5>Zoe Bachman</h5>
+                                        <h5>zine</h5>
                                         <p>Developer</p>
                                         <div class="row">
                                             <div class="col-6">
@@ -249,10 +279,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="des mt-4 mb-5">
-                                    Curriculum Director at Codecademy and creative technologist. She has designed a range of Codecademy courses, including Learn HTML, Learn C#, Learn Alexa, and the beginner-friendly Learn How to Code.
                                 </div>
                             </div>
                         </div>
@@ -286,7 +312,7 @@
                 <div class="list mt-2">
                     <div class="list1 d-flex justify-content-between pt-2 border-bottom">
                         <p><i class="fa fa-clock"></i> Duration</p>
-                        <p>2.0 Hrs</p>
+                        <p><?php echo $course['nb_heure']; ?></p>
                     </div>
                     <div class="list2 d-flex justify-content-between pt-2 border-bottom">
                         <p><i class="fa fa-book"></i> Lectures</p>
@@ -302,19 +328,14 @@
                     </div>
                     <div class="list5 d-flex justify-content-between pt-2 border-bottom">
                         <p><i class="fa fa-list"></i> Skill Level</p>
-                        <p>Beginner</p>
+                        <p><?php echo $course['level']; ?></p>
                     </div>
                     <div class="list6 d-flex justify-content-between pt-2 border-bottom">
                         <p><i class="fa fa-list"></i> Deadline</p>
                         <p>Life Time</p>
                     </div>
-                    <div class="list7 d-flex justify-content-between pt-2 border-bottom">
-                        <p><i class="fa fa-certificate"></i> Certificate</p>
-                        <p>Yes</p>
-                    </div>
-                    <div class="button pt-4 text-center mb-4">
-                        <i class="fa fa-share"></i><a href=""> Share this Course</a>
-                    </div>
+               
+                  
                 </div>
 
 

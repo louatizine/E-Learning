@@ -1,17 +1,6 @@
 <?php
-//session_start(); // Start the session if not already started
-//echo "Session User ID: " . $_SESSION['user_id']; // Debug statement
-//echo "Session User ID: " . $_SESSION['user_id']; // Debug statement
-
 include('../connexion/conx.php');
-
 $user_id = $_SESSION['user_id'];
-// if(isset($_SESSION['user_id'])) {
-//     $user_id = $_SESSION['user_id']; // Get the user ID from the session
-// } else {
-//     $user_id = 1; 
-// }
-
 $sql = "SELECT * FROM popular_courses";
 $result = mysqli_query($conn, $sql);
 $category = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -23,9 +12,10 @@ if(isset($_POST['enroll'])) {
     $course_level = $_POST['course_level'];
     $course_hours = $_POST['course_hours'];
     $course_price = $_POST['course_price'];
+    $course_statut = $_POST['course_statut'];
     
-    $sql = "INSERT INTO enrolled_courses (course_id, title, level, nb_heure, price, user_id) 
-            VALUES ('$course_id', '$course_title', '$course_level', '$course_hours', '$course_price', $user_id)";
+    $sql = "INSERT INTO enrolled_courses (course_id, title, level, nb_heure,statut, price, user_id) 
+            VALUES ('$course_id', '$course_title', '$course_level', '$course_hours','$course_statut', '$course_price', $user_id)";
     mysqli_query($conn, $sql);
 }
 
@@ -94,6 +84,7 @@ mysqli_close($conn);
                                     <input type="hidden" name="course_level" value="<?php echo $item['level']; ?>">
                                     <input type="hidden" name="course_hours" value="<?php echo $item['nb_heure']; ?>">
                                     <input type="hidden" name="course_price" value="<?php echo $item['price']; ?>">
+                                    <input type="hidden" name="course_statut" value="<?php echo $item['statut']; ?>">
                                     <button type="submit" name="enroll" class="btn btn-primary">Enroll Now</button>
                                 </form>
                             </div>

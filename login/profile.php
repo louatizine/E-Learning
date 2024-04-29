@@ -11,6 +11,19 @@ if ($result) {
     echo "Error: " . mysqli_error($conn);
     exit;
 }
+
+// Check user type and set text accordingly
+$userType = $user['user_type'];
+if ($userType == "user") {
+    $userTypeText = "Student";
+} elseif ($userType == "instructor") {
+    $userTypeText = "Professor";
+} elseif ($userType == "admin") {
+    $userTypeText = "Admin";
+} else {
+    // Default to user type if not recognized
+    $userTypeText = $userType;
+}
 ?>
 
 
@@ -556,10 +569,10 @@ if ($result) {
 <body>
 
     <div class="container">
-    <?php
-             
-                $image = $user["pp"];
-                ?>
+        <?php
+
+        $image = $user["pp"];
+        ?>
         <section class="userProfile card">
             <div class="profile">
                 <figure> <img src="img/<?php echo $image; ?>" title="<?php echo $image; ?>">
@@ -577,7 +590,7 @@ if ($result) {
                     <i class="ri-map-pin-fill ri"></i>
                     <span><?php echo $user['adresse']; ?></span>
                 </div>
-                <p><?php echo $user['user_type']; ?></p>
+                <p><?php echo $userTypeText; ?></p>
             </div>
 
             <section class="timeline_about card">
@@ -637,11 +650,12 @@ if ($result) {
                     </ul>
                 </div>
                 <div class="btns">
-        <ul>
-            <!-- Add the anchor tag for the button -->
-            <li><a href="user_profile.php"><i class="ri-arrow-left-line ri"></i>Update Profile </a></li>
-        </ul>
-    </div>
+                    <ul>
+                        <!-- Add the anchor tag for the button -->
+                        <li><a href="user_profile.php" style="color: orange;"><i class="ri-arrow-left-line ri"></i>Update Profile </a></li>
+
+                    </ul>
+                </div>
             </section>
     </div>
 
