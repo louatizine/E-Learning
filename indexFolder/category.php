@@ -61,7 +61,7 @@ mysqli_close($conn);
                         $image = $item['picture']; // Corrected accessing the 'picture' key
                         ?>
                         <!-- Image source modified to fetch image dynamically -->
-                        <img src="img/<?php echo $image; ?>" class="img-fluid" alt="<?php echo $item['title']; ?>">
+                        <img src="../login/img/<?php echo $image; ?>" class="img-fluid" alt="">
                         <h5 class="my-2">
                             <a href="#" class="text-center"><?php echo $item['title']; ?></a>
                         </h5>

@@ -8,9 +8,8 @@ if (isset($_POST['submit'])) {
     $pass = md5($_POST['password']);
     $cpass = md5($_POST['cpassword']);
     $user_type = $_POST['user_type'];
-    $birthday = $_POST['birthday']; // Added
-    $gender = $_POST['gender']; // Added
-
+    $birthday = $_POST['birthday']; 
+    $gender = $_POST['gender']; 
     $select = "SELECT * FROM user_form WHERE email = '$email'";
 
     $result = mysqli_query($conn, $select);

@@ -6,14 +6,14 @@ $result = mysqli_query($conn, $sql);
 $category = mysqli_fetch_all($result, MYSQLI_ASSOC);
 mysqli_free_result($result);
 
-if(isset($_POST['enroll'])) {
+if (isset($_POST['enroll'])) {
     $course_id = $_POST['course_id'];
     $course_title = $_POST['course_title'];
     $course_level = $_POST['course_level'];
     $course_hours = $_POST['course_hours'];
     $course_price = $_POST['course_price'];
     $course_statut = $_POST['course_statut'];
-    
+
     $sql = "INSERT INTO enrolled_courses (course_id, title, level, nb_heure,statut, price, user_id) 
             VALUES ('$course_id', '$course_title', '$course_level', '$course_hours','$course_statut', '$course_price', $user_id)";
     mysqli_query($conn, $sql);
@@ -60,12 +60,15 @@ mysqli_close($conn);
         </div>
         <div class="container">
             <div class="row g-4 py-2">
-                <?php foreach ($category as $item): ?>
+                <?php foreach ($category as $item) : ?>
                     <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="course-item shadow">
                             <div class="position-relative overflow-hidden text-light image">
-                                <img class="img-fluid" src="img/course-1.jpg" alt="">
-                                <?php if ($item['statut'] == 'free'): ?>
+                                <?php
+                                $image = $item['picture']; // Corrected accessing the 'picture' key
+                                ?>
+                                <img class="img-fluid" src=../login/img/<?php echo $image; ?> alt="">
+                                <?php if ($item['statut'] == 'free') : ?>
                                     <div style="position:absolute;top: 15px;left: 16px; font-size:12px; border-radius:3px; background-color:#fb873f;" class="px-2 py-1 fw-bold text-uppercase">FREE</div>
                                 <?php endif; ?>
                             </div>
