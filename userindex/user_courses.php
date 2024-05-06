@@ -80,7 +80,7 @@ mysqli_close($conn);
 
 <div class="container-xxl py-5">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-        <h1 class="mb-5" style="color: #fb873f;">Enrolled Courses</h1>
+        <h1 class="mb-5" style="color: #721c04;">Enrolled Courses</h1>
     </div>
     <div class="container">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3 py-3">
@@ -102,3 +102,4 @@ mysqli_close($conn);
 </body>
 
 </html>
+Écrire à Eya Ben Attig

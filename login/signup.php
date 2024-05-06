@@ -159,7 +159,7 @@
         </select>
     </div>
     <center>
-        <input type="submit" name="submit" value="Register now" class="btn text-light w-100 py-3" style="background-color:#fb873f">
+        <input type="submit" name="submit" value="Register now" class="btn text-light w-100 py-3" style="background-color:#721c04;">
         <p>Already have an account? <a href="login.php">Login now</a></p>
     </center>
 </form>

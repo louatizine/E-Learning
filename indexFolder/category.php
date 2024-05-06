@@ -51,7 +51,7 @@ mysqli_close($conn);
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center px-3">Categories</h6>
-                <h1 class="mb-5" style="color: #fb873f;">Popular Topics to Explore</h1>
+                <h1 class="mb-5" style="color: #721c04;">Popular Topics to Explore</h1>
             </div>
             <div class="row g-2 m-2">
                 <?php foreach ($category as $item): ?>
@@ -61,7 +61,7 @@ mysqli_close($conn);
                         $image = $item['picture']; // Corrected accessing the 'picture' key
                         ?>
                         <!-- Image source modified to fetch image dynamically -->
-                        <img src="../login/img/<?php echo $image; ?>" class="img-fluid" alt="">
+                        <img src="img/<?php echo $image; ?>" class="img-fluid" alt="<?php echo $item['title']; ?>">
                         <h5 class="my-2">
                             <a href="#" class="text-center"><?php echo $item['title']; ?></a>
                         </h5>

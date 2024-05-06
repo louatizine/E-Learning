@@ -158,11 +158,11 @@
 }
 
 .navbar-toggler-icon {
-    color: #fb873f;
+    color: #721c04;
 }
 
 .navbar-toggler {
-    border: 2px solid #fb873f;
+    border: 2px solid #721c04;
 }
 
 @media (min-width: 992px) {

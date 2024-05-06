@@ -7,7 +7,7 @@ require_once("../connexion/conx.php");
 
 <head>
     <meta charset="utf-8">
-    <title>Secret Coder : Contact</title>
+    <title> Contact</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -76,7 +76,7 @@ require_once("../connexion/conx.php");
                         capabilities to access current websites or specific contact details.</p>
                     <div class="d-flex align-items-center mb-3">
                         <div class="d-flex align-items-center justify-content-center flex-shrink-0"
-                            style="width: 50px; height: 50px; background-color: #fb873f;">
+                            style="width: 50px; height: 50px; background-color: #721c04;">
                             <i class="fa fa-map-marker-alt text-white"></i>
                         </div>
                         <div class="ms-3">
@@ -86,8 +86,8 @@ require_once("../connexion/conx.php");
                     </div>
                     <div class="d-flex align-items-center mb-3">
                         <div class="d-flex align-items-center justify-content-center flex-shrink-0"
-                            style="width: 50px; height: 50px; background-color: #fb873f;">
-                            <i class="fa fa-phone-alt text-white"></i>
+                            style="width: 50px; height: 50px; background-color: #721c04;">
+                            <i class="fa fa-phone-alt text-white" ></i>
                         </div>
                         <div class="ms-3">
                             <h5>Mobile</h5>
@@ -96,7 +96,7 @@ require_once("../connexion/conx.php");
                     </div>
                     <div class="d-flex align-items-center">
                         <div class="d-flex align-items-center justify-content-center flex-shrink-0"
-                            style="width: 50px; height: 50px; background-color: #fb873f;">
+                            style="width: 50px; height: 50px; background-color: #721c04;">
                             <i class="fa fa-envelope-open text-white"></i>
                         </div>
                         <div class="ms-3">

@@ -2,8 +2,11 @@
 require_once("../connexion/conx.php");
 session_start();
 if (isset($_POST['submit'])) {
+    // $name = mysqli_real_escape_string($conn, $_POST['name']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $pass = md5($_POST['password']);
+    // $cpass = md5($_POST['cpassword']);
+    // $user_type = $_POST['user_type'];
 
     $select = "SELECT * FROM user_form WHERE email = '$email' && password = '$pass'";
     $result = mysqli_query($conn, $select);
@@ -11,18 +14,18 @@ if (isset($_POST['submit'])) {
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_array($result);
         var_dump($row[0]);
-        $user_id = $row['id']; 
+        $user_id = $row['id']; // Récupération de l'ID de l'utilisateur depuis la base de données
         if ($row['user_type'] == 'admin') {
             $_SESSION['admin_name'] = $row['uname'];
              header('location:admin_dashboard.php');
         } elseif ($row['user_type'] == 'user') {
             $_SESSION['user_name'] = $row['uname'];
-            $_SESSION['user_id'] = $user_id;
+            $_SESSION['user_id'] = $user_id; // Stockage de l'ID de l'utilisateur dans la session
             header('location:user_index.php');
         } elseif ($row['user_type'] == 'instructor') {
             $_SESSION['user_name'] = $row['uname'];
-            $_SESSION['user_id'] = $user_id; 
-            header('location:single.php');
+            $_SESSION['user_id'] = $user_id; // Stockage de l'ID de l'utilisateur dans la session
+            header('location:profilUser.php');
         }
     } else {
         $error[] = 'Incorrect email or password!';
@@ -116,7 +119,7 @@ if (isset($_POST['submit'])) {
                 <h1 class="display-3 text-white animated slideInDown">Login</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
-                        <li class="breadcrumb-item"><a class="text-white" href="index.php">Home</a></li>
+                        <li class="breadcrumb-item"><a class="text-white" href="./pages/index.php">Home</a></li>
                         <li class="breadcrumb-item text-white active" aria-current="page">Login</li>
                     </ol>
                 </nav>
@@ -137,7 +140,7 @@ if (isset($_POST['submit'])) {
                     <?php endif; ?>
                     <input type="email" id="email" name="email" class="form-control"required placeholder="Enter your email">
                     <input type="password" id="password"  class="form-control"name="password" required placeholder="Enter your password">
-                    <input type="submit" id="submit" name="submit" value="Login now" class="btn text-light w-100 py-3" style="background-color:#fb873f">
+                    <input type="submit" id="submit" name="submit" value="Login now" class="btn text-light w-100 py-3" style="background-color:#721c04">
                     <p>Don't have an account? <a href="signup.php">Register now</a></p>
                 </form>
             </center>
@@ -157,3 +160,4 @@ if (isset($_POST['submit'])) {
 <script src="js/main.js"></script>
 </body>
 </html>
+Écrire à Eya Ben Attig

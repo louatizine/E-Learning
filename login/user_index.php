@@ -43,7 +43,6 @@ session_start();
 
 
 
-    <?php include '../indexFolder/Banner2.php'; ?>
 
     <?php include '../indexFolder/faq.php'; ?>
 

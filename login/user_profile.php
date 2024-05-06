@@ -197,7 +197,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="text" id="level" name="level" value="<?php echo $user['level']; ?>">
                 </div>
             </div>
-            <button type="submit" class="btn text-light w-100 py-3" style="background-color:#fb873f">Update</button>
+            <button type="submit" class="btn text-light w-100 py-3" style="background-color:#721c04;">Update</button>
             
         </form>
 </div>

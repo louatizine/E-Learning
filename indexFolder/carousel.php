@@ -38,7 +38,7 @@
                     <div class="container">
                         <div class="row justify-content-start">
                             <div class="col-sm-10 col-lg-8">
-                                <h5 class=" text-uppercase mb-3 animated slideInDown" style="color: #fb873f;">Best
+                                <h5 class=" text-uppercase mb-3 animated slideInDown" style="color: #721c04;">Best
                                     E-learning platform</h5>
                                 <h1 class="display-3 text-white animated slideInDown">Learn Job ready skills from free
                                     online courses with certificates</h1>
@@ -60,7 +60,7 @@
                     <div class="container">
                         <div class="row justify-content-start">
                             <div class="col-sm-10 col-lg-8">
-                                <h5 class=" text-uppercase mb-3 animated slideInDown" style="color: #fb873f;">Welcome to
+                                <h5 class=" text-uppercase mb-3 animated slideInDown" style="color: #721c04;">Welcome to
                                     Secret Coder</h5>
                                 <h1 class="display-3 text-white animated slideInDown">Interactive Learning Experience
                                 </h1>

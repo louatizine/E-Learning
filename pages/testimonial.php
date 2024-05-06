@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Secret Coder : Testimonial</title>
+    <title>Testimonial</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -64,7 +64,7 @@
     <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
             <div class="text-center">
-                <h1 class=" bg-white text-center px-3" style="color: #fb873f;">Success stories</h1>
+                <h1 class=" bg-white text-center px-3" style="color: #721c04;">Success stories</h1>
                 <p class="mb-5">Can Secret Coder courses help your career? Our learners tell us how.</p>
             </div>
             <div class="owl-carousel testimonial-carousel position-relative">

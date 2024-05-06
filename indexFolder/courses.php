@@ -56,7 +56,7 @@ mysqli_close($conn);
     <div class="container-xxl py-5">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
             <h6 class="section-title bg-white text-center px-3">Popular Courses</h6>
-            <h1 class="mb-5" style="color: #fb873f;">Explore new and trending free online courses</h1>
+            <h1 class="mb-5" style="color: #721c04;">Explore new and trending free online courses</h1>
         </div>
         <div class="container">
             <div class="row g-4 py-2">

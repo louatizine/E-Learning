@@ -7,7 +7,7 @@ if ($conn->connect_error) {
 }
 
 // Requête pour récupérer tous les utilisateurs ayant le rôle "user"
-$sql = "SELECT * FROM user_form WHERE user_type = 'user'";
+$sql = "SELECT * FROM user_form WHERE user_type = 'instructor'";
 $result = $conn->query($sql);
 
 // Vérifier s'il y a des résultats
@@ -145,7 +145,7 @@ $conn->close();
                                             echo '<td>';
                                             echo '<div class="action">';
                                         
-                                            echo'<a href="delete_user.php?id=' . $row["id"] . '" class="text-danger" data-toggle="tooltip" data-placement="top" title="Supprimer l\'utilisateur"> <i class="fa fa fa-remove h5 m-0 text-danger"></i></a>';                                            echo '</div>';
+                                            echo'<a href="delete_instr.php?id=' . $row["id"] . '" class="text-danger" data-toggle="tooltip" data-placement="top" title="Supprimer l\'utilisateur"> <i class="fa fa fa-remove h5 m-0 text-danger"></i></a>';                                            echo '</div>';
                                             echo '</td>';
                                             echo '</tr>';
                                         }
@@ -194,4 +194,3 @@ $conn->close();
     <script src="js/main.js"></script>
 </body>
 </html>
-Écrire à Eya Ben Attig
