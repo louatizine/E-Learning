@@ -18,8 +18,8 @@ if ($result->num_rows > 0) {
     $total_msg = 0;
 }
 
-$sqll = "SELECT * FROM user_form WHERE user_type = 'user'";
-$result1 = $conn->query($sqll);
+$sql = "SELECT * FROM user_form WHERE user_type = 'user'";
+$result1 = $conn->query($sql);
 // Vérifier s'il y a des résultats
 
 if ($result1->num_rows > 0) {
@@ -27,6 +27,17 @@ if ($result1->num_rows > 0) {
     $total_user = $result1->num_rows;
 } else {
     $total_user = 0;
+}
+// Requête pour récupérer tous les utilisateurs ayant le rôle "user"
+$sql = "SELECT * FROM user_form WHERE user_type = 'instructor'";
+$result2 = $conn->query($sql);
+
+// Vérifier s'il y a des résultats
+if ($result->num_rows > 0) {
+    // Compter le nombre d'utilisateurs
+    $total_inst = $result2->num_rows;
+} else {
+    $total_inst = 0;
 }
 
 // Fermer la connexion à la base de données
@@ -95,6 +106,17 @@ $conn->close();
                     </div>
                     <h5 class="font-size-20 mt-0 pt-1"><?php echo $total_msg; ?></h5>
                     <p class="text-muted mb-0"><a href="crm_dashboard.php">CRM</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6" style="margin-top: 20px;margin-left: 10px;">
+            <div class="card bg-pattern">
+                <div class="card-body">
+                    <div class="float-right">
+                        <i class="fa fa-archive text-primary h4 ml-3"></i>
+                    </div>
+                    <h5 class="font-size-20 mt-0 pt-1"><?php echo $total_inst; ?></h5>
+                    <p class="text-muted mb-0"><a href="Instructor_dashboard.php">Liste Instructor</a></p>
                 </div>
             </div>
         </div>

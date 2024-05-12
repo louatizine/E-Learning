@@ -42,7 +42,7 @@ if(!isset($_SESSION['id'])){
               echo "<img src='php/images/{$user['pp']}' alt=''>";
               echo "<div class='details'>";
               // Make the user name clickable
-              echo "<span><a href='chat.php?id={$user['id']}'>{$user['uname']} {$user['uprenom']}</a></span>";
+               echo "<span><a href='chat.php?id={$user['id']}'>{$user['uname']} {$user['uprenom']}</a></span>";
               echo "<p>{$user['status']}</p>";
               echo "</div>";
               echo "</div>";
