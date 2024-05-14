@@ -20,37 +20,44 @@ if (isset($_POST['submit'])) {
     $instructor_id = $_SESSION['user_id']; // Instructor ID from session
 
     // File upload handling
-    $target_directory = "../login/img";
-    $target_file = $target_directory . basename($_FILES['picture']['name']);
+    $target_directory = "../login/img/";
+    if (!file_exists($target_directory)) {
+        mkdir($target_directory, 0777, true);
+    }
+    $target_filename = basename($_FILES['picture']['name']);
+    $target_file = $target_directory . $target_filename;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
     // Check if file is an image
     $check = getimagesize($_FILES['picture']['tmp_name']);
     if ($check !== false) {
-        // Check if file already exists
+        // Handle duplicate file names
         if (file_exists($target_file)) {
-            echo "Sorry, file already exists.";
+            $unique_suffix = time() . '_' . uniqid();
+            $target_filename = $unique_suffix . '.' . $imageFileType;
+            $target_file = $target_directory . $target_filename;
+        }
+
+        // Check file size (max 5MB)
+        if ($_FILES['picture']['size'] > 5 * 1024 * 1024) {
+            $error_message = "Sorry, your file is too large.";
         } else {
-            // Check file size (max 5MB)
-            if ($_FILES['picture']['size'] > 5 * 1024 * 1024) {
-                echo "Sorry, your file is too large.";
+            // Allow certain file formats
+            $allowed_formats = ['jpg', 'jpeg', 'png', 'gif'];
+            if (!in_array($imageFileType, $allowed_formats)) {
+                $error_message = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
             } else {
-                // Allow certain file formats
-                if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-                    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-                } else {
-                    // Upload file
-                    if (move_uploaded_file($_FILES['picture']['tmp_name'], $target_file)) {
-                        // Insert data into popular_courses table
-                        $insert_query = "INSERT INTO popular_courses (title, nb_heure, statut, level, price, picture, instructor_id, description) VALUES ('$title', '$nb_heure', '$statut', '$level', '$price', '$target_file', '$instructor_id', '$description')";
-                        if (mysqli_query($conn, $insert_query)) {
-                            $success_message = "Course added successfully!";
-                        } else {
-                            $error_message = "Error inserting course data: " . mysqli_error($conn);
-                        }
+                // Upload file
+                if (move_uploaded_file($_FILES['picture']['tmp_name'], $target_file)) {
+                    // Insert data into popular_courses table, store only the filename
+                    $insert_query = "INSERT INTO popular_courses (title, nb_heure, statut, level, price, picture, instructor_id, description) VALUES ('$title', '$nb_heure', '$statut', '$level', '$price', '$target_filename', '$instructor_id', '$description')";
+                    if (mysqli_query($conn, $insert_query)) {
+                        $success_message = "Course added successfully!";
                     } else {
-                        $error_message = "Sorry, there was an error uploading your file.";
+                        $error_message = "Error inserting course data: " . mysqli_error($conn);
                     }
+                } else {
+                    $error_message = "Sorry, there was an error uploading your file.";
                 }
             }
         }
@@ -63,147 +70,69 @@ if (isset($_POST['submit'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Add Course</title>
-<style>
-    /* Global Styles */
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f8f9fa;
-}
-
-.container {
-  max-width: 600px;
-  margin: 50px auto;
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.success-message {
-  color: green;
-  margin-bottom: 10px;
-}
-
-.error-message {
-  color: red;
-  margin-bottom: 10px;
-}
-
-/* Form Styles */
-.form-group {
-  margin-bottom: 20px;
-}
-
-label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 5px;
-}
-
-input[type="text"],
-input[type="number"],
-input[type="date"],
-select,
-textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image: url('data:image/svg+xml;utf8,<svg fill="%23777" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
-  background-repeat: no-repeat;
-  background-position: right 10px top 50%;
-  background-size: 15px;
-}
-
-textarea {
-  resize: vertical;
-  height: 100px;
-}
-
-input[type="submit"] {
-  background-color: #721c04;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 12px 20px;
-  cursor: pointer;
-  font-size: 16px;
-  width: calc(100% - 22px); /* Adjust width to match description textarea */
-}
-
-input[type="submit"]:hover {
-  background-color: #0056b3;
-}
-
-.file-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  background-color: #fff;
-  cursor: pointer;
-  outline: none;
-}
-
-@media screen and (max-width: 768px) {
-  .container {
-    max-width: 90%;
-    margin: 50px auto;
-  }
-}
-
-</style></head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Course</title>
+    <link rel="stylesheet" href="../css/style3.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar-custom {
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-custom .navbar-brand p {
+            color: black;
+        }
+        .navbar-custom .navbar-brand span {
+            color: #721c04;
+        }
+        .navbar-custom .navbar-toggler-icon {
+            color: #721c04;
+        }
+        .navbar-custom .navbar-toggler {
+            border: 2px solid #721c04;
+        }
+    </style>
+</head>
 <body>
+<nav class="navbar navbar-custom navbar-expand-lg sticky-top">
+  <div class="container-fluid">
+    <a href="../login/profilUser.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+      <p class="m-0 fw-bold" style="font-size: 25px;">Iteam<span>learning</span></p>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
 
 <div class="container">
     <h2>Add New Course</h2>
     <?php if(isset($success_message)) { ?>
-        <div class="success-message"><?php echo $success_message; ?></div>
+        <div class="alert alert-success"><?php echo $success_message; ?></div>
     <?php } ?>
     <?php if(isset($error_message)) { ?>
-        <div class="error-message"><?php echo $error_message; ?></div>
+        <div class="alert alert-danger"><?php echo $error_message; ?></div>
     <?php } ?>
     <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="title">Title:</label>
-            <input type="text" id="title" name="title" required>
+            <input type="text" id="title" name="title" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="nb_heure">Hours:</label>
-            <input type="number" id="nb_heure" name="nb_heure" required>
+            <input type="number" id="nb_heure" name="nb_heure" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="statut">Status:</label>
-            <select id="statut" name="statut" required>
-                <option value="Active">Active</option>
-                <option value="Inactive">Inactive</option>
+            <select id="statut" name="statut" class="form-control" required>
+                <option value="Active">Paid</option>
+                <option value="Inactive">Free</option>
             </select>
         </div>
         <div class="form-group">
             <label for="level">Level:</label>
-            <select id="level" name="level" required>
+            <select id="level" name="level" class="form-control" required>
                 <option value="Beginner">Beginner</option>
                 <option value="Intermediate">Intermediate</option>
                 <option value="Advanced">Advanced</option>
@@ -211,22 +140,22 @@ input[type="submit"]:hover {
         </div>
         <div class="form-group">
             <label for="price">Price:</label>
-            <input type="number" id="price" name="price" required>
+            <input type="number" id="price" name="price" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="picture">Picture:</label>
-            <input type="file" id="picture" name="picture" accept="image/*" required>
+            <input type="file" id="picture" name="picture" class="form-control" accept="image/*" required>
         </div>
-        <!-- No need to show instructor_id input field, as it's fetched from session -->
         <div class="form-group">
             <label for="description">Description:</label>
-            <textarea id="description" name="description" rows="4" required></textarea>
+            <textarea id="description" name="description" class="form-control" rows="4" required></textarea>
         </div>
-        <div class="form-group">
-            <input type="submit" name="submit" value="Submit">
+        <div class="form-group mt-3">
+            <input type="submit" name="submit" value="Submit" class="btn btn-primary">
         </div>
     </form>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

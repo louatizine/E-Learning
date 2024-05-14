@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </script>
             ";
             exit;
-        } elseif ($imageSize > 1200000) {
+        } elseif ($imageSize > 12000000000000) {
             echo "
             <script>
                 alert('Image Size Is Too Large');

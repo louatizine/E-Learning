@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
                     <div class="position-relative h-100">
-                        <img class="img-fluid position-absolute w-100 h-100" src="img/banner-1.jpg" alt=""
+                        <img class="img-fluid position-absolute w-100 h-100" src="../img/banner-2.png" alt=""
                             style="object-fit: cover;">
                     </div>
                 </div>

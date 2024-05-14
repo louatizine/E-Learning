@@ -8,7 +8,6 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a href="../login/user_index.php" class="nav-item nav-link active">Home</a>
             <a href="../instructorindex/nstructorAddCourses.php" class="nav-item nav-link">Add Courses</a>
             <a href="../instructorindex/OwnCourses.php" class="nav-item nav-link">Own Courses</a>
             <a href="../login/profilUser.php" class="nav-item nav-link"><i class="fa fa-user"></i></a>

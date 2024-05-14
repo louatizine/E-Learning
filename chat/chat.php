@@ -1,6 +1,7 @@
 <?php 
 session_start();
 require_once("../connexion/conx.php");
+
 if(!isset($_SESSION['id'])){
   header("location: login.php");
   exit; // Add an exit after redirecting to prevent further execution
@@ -18,13 +19,13 @@ if(isset($_GET['id'])) {
     exit; // Add an exit after redirecting to prevent further execution
   }
 } else {
-  // Redirect to users.php if user ID is not provided in the URL
+  // Redirect to users.php if no user ID is provided
   header("location: users.php");
-  exit; // Add an exit after redirecting to prevent further execution
+  exit;
 }
-?>
 
-<?php include_once "header.php"; ?>
+include_once "header.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,17 +40,17 @@ if(isset($_GET['id'])) {
     <section class="chat-area">
       <header>
         <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
-        <img src="../login/img/<?php echo $row['pp']; ?>" alt="">
+        <img src="../login/img/<?php echo htmlspecialchars($row['pp']); ?>" alt="">
         <div class="details">
-          <span><?php echo $row['uname']. " " . $row['uprenom'] ?></span>
-          <p><?php echo $row['status']; ?></p>
+          <span><?php echo htmlspecialchars($row['uname']. " " . $row['uprenom']); ?></span>
+          <p><?php echo htmlspecialchars($row['status']); ?></p>
         </div>
       </header>
       <div class="chat-box">
 
       </div>
       <form action="#" class="typing-area">
-        <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $user_id; ?>" hidden>
+        <input type="text" class="incoming_id" name="incoming_id" value="<?php echo htmlspecialchars($user_id); ?>" hidden>
         <input type="text" name="message" class="input-field" placeholder="Type a message here..." autocomplete="off">
         <button><i class="fab fa-telegram-plane"></i></button>
       </form>
@@ -57,6 +58,5 @@ if(isset($_GET['id'])) {
   </div>
 
   <script src="javascript/chat.js"></script>
-
 </body>
 </html>

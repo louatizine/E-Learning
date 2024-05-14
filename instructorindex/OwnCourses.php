@@ -48,10 +48,40 @@ mysqli_close($conn);
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
-</head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
+         <style>
+        .navbar-custom {
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-custom .navbar-brand p {
+            color: black;
+        }
+        .navbar-custom .navbar-brand span {
+            color: #721c04;
+        }
+        .navbar-custom .navbar-toggler-icon {
+            color: #721c04;
+        }
+        .navbar-custom .navbar-toggler {
+            border: 2px solid #721c04;
+        }
+    </style>
+</head>
 <body>
-<?php include '../repite/InstroctorHeader.php'; ?>
+
+<nav class="navbar navbar-custom navbar-expand-lg sticky-top">
+  <div class="container-fluid">
+    <a href="../login/profilUser.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+      <p class="m-0 fw-bold" style="font-size: 25px;">Iteam<span>learning</span></p>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
 
     <div class="container-xxl py-5">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
