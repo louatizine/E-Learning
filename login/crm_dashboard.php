@@ -16,16 +16,30 @@ if ($result->num_rows > 0) {
 
 $sql = "SELECT * FROM user_form WHERE user_type = 'user'";
 $result1 = $conn->query($sql);
+<<<<<<< HEAD
+=======
+// Vérifier s'il y a des résultats
+>>>>>>> 6b37e37149f57ee54166d6daaacc6db5d760881e
 
 if ($result1->num_rows > 0) {
     $total_user = $result1->num_rows;
 } else {
     $total_user = 0;
 }
+<<<<<<< HEAD
 $sql = "SELECT * FROM user_form WHERE user_type = 'instructor'";
 $result2 = $conn->query($sql);
 
 if ($result->num_rows > 0) {
+=======
+// Requête pour récupérer tous les utilisateurs ayant le rôle "user"
+$sql = "SELECT * FROM user_form WHERE user_type = 'instructor'";
+$result2 = $conn->query($sql);
+
+// Vérifier s'il y a des résultats
+if ($result->num_rows > 0) {
+    // Compter le nombre d'utilisateurs
+>>>>>>> 6b37e37149f57ee54166d6daaacc6db5d760881e
     $total_inst = $result2->num_rows;
 } else {
     $total_inst = 0;
@@ -102,6 +116,7 @@ $conn->close();
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
             <div class="col-xl-3 col-md-6" style="margin-top: 20px;margin-left: 10px;">
                 <div class="card bg-pattern">
                     <div class="card-body">
@@ -110,6 +125,88 @@ $conn->close();
                         </div>
                         <h5 class="font-size-20 mt-0 pt-1"><?php echo $total_inst; ?></h5>
                         <p class="text-muted mb-0"><a href="Instructor_dashboard.php">Liste Instructor</a></p>
+=======
+        </div>
+        <div class="col-xl-3 col-md-6" style="margin-top: 20px;margin-left: 10px;">
+            <div class="card bg-pattern">
+                <div class="card-body">
+                    <div class="float-right">
+                        <i class="fa fa-archive text-primary h4 ml-3"></i>
+                    </div>
+                    <h5 class="font-size-20 mt-0 pt-1"><?php echo $total_inst; ?></h5>
+                    <p class="text-muted mb-0"><a href="Instructor_dashboard.php">Liste Instructor</a></p>
+                </div>
+            </div>
+        </div>
+        </div>
+    <!-- end row -->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive project-list">
+                        <table class="table project-table table-centered table-nowrap">
+                            <thead>
+                                <tr>
+                                <th scope="col">ID</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Subject</th>
+                                    <th scope="col">State</th>
+                                    <th scope="col">Message</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                                    // Si des utilisateurs sont trouvés
+                                    if ($result->num_rows > 0) {
+                                        // Boucle à travers les résultats de la requête
+                                        while ($row = $result->fetch_assoc()) {
+                                            // Intégration des données dans chaque ligne du tableau
+                                            echo '<tr>';
+                                            echo '<th scope="row">' . $row["id"] . '</th>';
+                                            echo '<td>' . $row["name"] . '</td>';
+                                            echo '<td>' . $row["email"] . '</td>';
+                                            echo '<td>' . $row["subject"] . '</td>';
+                                            echo '<td>' ;
+                                            echo '<span class="text-danger font-12"><i class="mdi mdi-checkbox-blank-circle mr-1"></i>Not Seen </span>';
+                                            echo'</td>';
+                                            echo '<td>' . $row["message"] . '</td>';
+                                            echo '<td>';
+                                            echo '<div class="action">';
+                                           
+                                            echo'<a href="delete_crm.php?id=' . $row["id"] . '" class="text-danger" data-toggle="tooltip" data-placement="top" title="Supprimer l\'utilisateur"> <i class="fa fa fa-remove h5 m-0 text-danger"></i></a>';                                            echo '</div>';
+                                            echo '</div>';
+                                            echo '</td>';
+                                            echo '</tr>';
+                                        }
+                                    } else {
+                                        // Si aucun utilisateur trouvé
+                                        echo '<tr><td colspan="7">Aucun utilisateur trouvé.</td></tr>';
+                                    }
+                                    ?>
+
+                          
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- end project-list -->
+
+                    <div class="pt-3">
+                        <ul class="pagination justify-content-end mb-0">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+>>>>>>> 6b37e37149f57ee54166d6daaacc6db5d760881e
                     </div>
                 </div>
             </div>

@@ -7,7 +7,7 @@ if ($conn->connect_error) {
 }
 
 // Requête pour récupérer tous les utilisateurs ayant le rôle "user"
-$sql = "SELECT * FROM user_form WHERE user_type = 'instructor'";
+$sql = "SELECT * FROM user_form WHERE user_type = 'user'";
 $result = $conn->query($sql);
 
 // Vérifier s'il y a des résultats
@@ -27,6 +27,17 @@ if ($result1->num_rows > 0) {
     $total_msg = $result1->num_rows;
 } else {
     $total_msg = 0;
+}
+// Requête pour récupérer tous les utilisateurs ayant le rôle "user"
+$sql = "SELECT * FROM user_form WHERE user_type = 'instructor'";
+$result2 = $conn->query($sql);
+
+// Vérifier s'il y a des résultats
+if ($result->num_rows > 0) {
+    // Compter le nombre d'utilisateurs
+    $total_inst = $result2->num_rows;
+} else {
+    $total_inst = 0;
 }
 
 // Fermer la connexion à la base de données
@@ -103,7 +114,7 @@ $conn->close();
                     <div class="float-right">
                         <i class="fa fa-archive text-primary h4 ml-3"></i>
                     </div>
-                    <h5 class="font-size-20 mt-0 pt-1"><?php echo $total_msg; ?></h5>
+                    <h5 class="font-size-20 mt-0 pt-1"><?php echo $total_inst; ?></h5>
                     <p class="text-muted mb-0"><a href="Instructor_dashboard.php">Liste Instructor</a></p>
                 </div>
             </div>
@@ -131,9 +142,9 @@ $conn->close();
                                 <tbody>
                                     <?php
                                     // Si des utilisateurs sont trouvés
-                                    if ($result->num_rows > 0) {
+                                    if ($result2->num_rows > 0) {
                                         // Boucle à travers les résultats de la requête
-                                        while ($row = $result->fetch_assoc()) {
+                                        while ($row = $result2->fetch_assoc()) {
                                             // Intégration des données dans chaque ligne du tableau
                                             echo '<tr>';
                                             echo '<th scope="row">' . $row["id"] . '</th>';
@@ -145,7 +156,7 @@ $conn->close();
                                             echo '<td>';
                                             echo '<div class="action">';
                                         
-                                            echo'<a href="delete_instr.php?id=' . $row["id"] . '" class="text-danger" data-toggle="tooltip" data-placement="top" title="Supprimer l\'utilisateur"> <i class="fa fa fa-remove h5 m-0 text-danger"></i></a>';                                            echo '</div>';
+                                            echo'<a href="delete_user.php?id=' . $row["id"] . '" class="text-danger" data-toggle="tooltip" data-placement="top" title="Supprimer l\'utilisateur"> <i class="fa fa fa-remove h5 m-0 text-danger"></i></a>';                                            echo '</div>';
                                             echo '</td>';
                                             echo '</tr>';
                                         }
@@ -194,3 +205,4 @@ $conn->close();
     <script src="js/main.js"></script>
 </body>
 </html>
+
