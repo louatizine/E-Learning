@@ -1,4 +1,3 @@
-Eya Ben Attig
 <?php
 require_once("../connexion/conx.php");
 
@@ -24,12 +23,10 @@ $result1 = $conn->query($sql);
 // Vérifier s'il y a des résultats
 
 if ($result1->num_rows > 0) {
-    // Compter le nombre d'utilisateurs
     $total_user = $result1->num_rows;
 } else {
     $total_user = 0;
 }
-// Requête pour récupérer tous les utilisateurs ayant le rôle "user"
 $sql = "SELECT * FROM user_form WHERE user_type = 'instructor'";
 $result2 = $conn->query($sql);
 
