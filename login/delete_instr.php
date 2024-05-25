@@ -7,28 +7,38 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     // Inclure le fichier de connexion à la base de données
     require_once("../connexion/conx.php");
 
-    // Préparer la requête de suppression de l'utilisateur
-    $sql = "DELETE FROM user_form WHERE id = ?";
+    // Débuter une transaction
+    $conn->begin_transaction();
 
-    // Préparer la déclaration
-    $stmt = $conn->prepare($sql);
+    try {
+        // Préparer la requête de suppression des enregistrements dépendants
+        $sql1 = "DELETE FROM enrolled_courses WHERE user_id = ?";
+        $stmt1 = $conn->prepare($sql1);
+        $stmt1->bind_param("i", $user_id);
+        $stmt1->execute();
+        $stmt1->close();
 
-    // Lier les paramètres
-    $stmt->bind_param("i", $user_id);
+        // Préparer la requête de suppression de l'utilisateur
+        $sql2 = "DELETE FROM user_form WHERE id = ?";
+        $stmt2 = $conn->prepare($sql2);
+        $stmt2->bind_param("i", $user_id);
+        $stmt2->execute();
+        $stmt2->close();
 
-    // Exécuter la requête de suppression
-    if ($stmt->execute()) {
+        // Commit the transaction
+        $conn->commit();
+
         // Rediriger vers la page d'origine avec un message de succès
         header("Location: ".$_SERVER['HTTP_REFERER']."?success=1");
         exit();
-    } else {
+    } catch (Exception $e) {
+        // Rollback the transaction if something failed
+        $conn->rollback();
+
         // Rediriger vers la page d'origine avec un message d'erreur
         header("Location: ".$_SERVER['HTTP_REFERER']."?error=1");
         exit();
     }
-
-    // Fermer la déclaration
-    $stmt->close();
 
     // Fermer la connexion à la base de données
     $conn->close();

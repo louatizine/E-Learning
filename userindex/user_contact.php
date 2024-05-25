@@ -1,7 +1,27 @@
 <?php
 require_once("../connexion/conx.php");
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $subject = $_POST['subject'];
+    $message = $_POST['message'];
+
+    $query = "INSERT INTO contacte (name, email, subject, message) VALUES (?, ?, ?, ?)";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("ssss", $name, $email, $subject, $message);
+    
+    if ($stmt->execute()) {
+        echo "<script>alert('Message sent successfully!');</script>";
+    } else {
+        echo "<script>alert('Error sending message. Please try again later.');</script>";
+    }
+
+    $stmt->close();
+    $conn->close();
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -98,7 +118,7 @@ require_once("../connexion/conx.php");
                 </div>
 
                 <div class="col-lg-6 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
-                    <form action="contacte_scripte.php" method="POST">
+                    <form action="#" method="POST">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
@@ -109,7 +129,7 @@ require_once("../connexion/conx.php");
                             <div class="col-md-6">
                                 <div class="form-floating">
                                     <input type="email" class="form-control" id="email" required
-                                        placeholder="Your Email" name="email"><?php if(isset($_GET['m1'])) echo $_GET['m1']; ?>
+                                        placeholder="Your Email" name="email">
                                     <label for="email">Your Email</label>
                                 </div>
                             </div>

@@ -141,11 +141,8 @@ $conn->close();
                                 </thead>
                                 <tbody>
                                     <?php
-                                    // Si des utilisateurs sont trouvés
                                     if ($result->num_rows > 0) {
-                                        // Boucle à travers les résultats de la requête
                                         while ($row = $result->fetch_assoc()) {
-                                            // Intégration des données dans chaque ligne du tableau
                                             echo '<tr>';
                                             echo '<th scope="row">' . $row["id"] . '</th>';
                                             echo '<td>' . $row["uname"] . '</td>';

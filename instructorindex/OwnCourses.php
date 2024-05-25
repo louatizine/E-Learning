@@ -116,7 +116,7 @@ mysqli_close($conn);
                                 <input type="hidden" name="course_hours" value="<?php echo $item['nb_heure']; ?>">
                                 <input type="hidden" name="course_price" value="<?php echo $item['price']; ?>">
                                 <input type="hidden" name="course_statut" value="<?php echo $item['statut']; ?>">
-                                <a href="../login/singleinst.php?id=<?php echo $item['id']; ?>" class="btn btn-primary">See Now</a>
+                                <a href="../login/singleinst.php?id=<?php echo $item['id']; ?>" class="btn btn-primary" style="background-color:#721c04">See Now</a>
                             </form>
                         </div>
                     </div>
@@ -126,7 +126,6 @@ mysqli_close($conn);
     </div>
 </div>
 <div class="container text-center">
-    <a class="btn text-light py-3 px-5 mt-2 mb-5" href="courses.html">All Courses</a>
 </div>
 <!-- Courses End -->
 <?php include '../repite/footer.php'; ?>

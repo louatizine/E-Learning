@@ -7,28 +7,31 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     // Inclure le fichier de connexion à la base de données
     require_once("../connexion/conx.php");
 
-    // Préparer la requête de suppression de l'utilisateur
-    $sql = "DELETE FROM contacte WHERE id = ?";
+    // Débuter une transaction
+    $conn->begin_transaction();
 
-    // Préparer la déclaration
-    $stmt = $conn->prepare($sql);
+    try {
+        // Préparer la requête de suppression de l'utilisateur
+        $sql = "DELETE FROM contacte WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $crm_id);
+        $stmt->execute();
+        $stmt->close();
 
-    // Lier les paramètres
-    $stmt->bind_param("i", $crm_id );
+        // Commit the transaction
+        $conn->commit();
 
-    // Exécuter la requête de suppression
-    if ($stmt->execute()) {
         // Rediriger vers la page d'origine avec un message de succès
         header("Location: ".$_SERVER['HTTP_REFERER']."?success=1");
         exit();
-    } else {
+    } catch (Exception $e) {
+        // Rollback the transaction if something failed
+        $conn->rollback();
+
         // Rediriger vers la page d'origine avec un message d'erreur
         header("Location: ".$_SERVER['HTTP_REFERER']."?error=1");
         exit();
     }
-
-    // Fermer la déclaration
-    $stmt->close();
 
     // Fermer la connexion à la base de données
     $conn->close();
