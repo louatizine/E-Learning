@@ -17,7 +17,7 @@
 
         $output .= '<a href="chat.php?user_id='. $row['id'] .'">
                     <div class="content">
-                    <img src="php/images/'. $row['pp'] .'" alt="">
+                    <img src="../login/img/'. $row['pp'] .'" alt="">
                     <div class="details">
                         <span>'. $row['uname']. " " . $row['uprenom'] .'</span>
                         <p>'. $you . $msg .'</p>

@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
 
 <head>
     <link rel="shortcut icon" type="png" href="images/icon/logo.PNG">
@@ -33,43 +32,43 @@
     <link href="css/style.css" rel="stylesheet">
     <style>
         .content-container {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    padding: 20px;
-}
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            padding: 20px;
+        }
 
-.image-section {
-    flex: 1 1 100%;
-    text-align: left;
-    margin-bottom: 20px;
-}
+        .image-section {
+            flex: 1 1 100%;
+            text-align: left;
+            margin-bottom: 20px;
+        }
 
-.image-section img {
-    width: 350px; 
-    height: auto;
-    display: block;
-}
+        .image-section img {
+            width: 350px;
+            height: auto;
+            display: block;
+        }
 
-.text-section {
-    flex: 1 1 100%;
-    text-align: left;
-}
+        .text-section {
+            flex: 1 1 100%;
+            text-align: left;
+        }
 
-.text-section p {
-    font-size: 24px;
-    font-weight: bold;
-}
+        .text-section p {
+            font-size: 24px;
+            font-weight: bold;
+        }
 
-.text-section h5 {
-    font-size: 16px;
-    font-weight: normal;
-    color: #555;
-}
-
+        .text-section h5 {
+            font-size: 16px;
+            font-weight: normal;
+            color: #555;
+        }
     </style>
 
 </head>
+
 
 <body>
     <!DOCTYPE html>
@@ -89,24 +88,32 @@
     </head>
 
     <body>
+
+
         <!-- Navigation Bar -->
         <header id="header">
-            <nav>
-            <a href="index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <p class="m-0 fw-bold" style="font-size: 25px;"><span style="color: grey;">Iteam</span><span
-                    style="color: #721c04;">learning</span></p>
-        </a>                <ul>
-                    <li><a class="active" href="">Home</a></li>
-                    <li><a href="#About_section">About</a></li>
-                    <li><a href="#services_section">Services</a></li>
-                    <li><a href="#contactus_section">Contact</a></li>
-                </ul>
-                <div class="srch"><input type="text" class="search" placeholder="Search here..."><i class="fas fa-search"></i>
+            <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+                <a href="index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+                    <p class="m-0 fw-bold" style="font-size: 25px;">Iteam<span style="color: #721c04;">learning</span></p>
+                </a>
+                <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto p-4 p-lg-0">
+                        <a href="index.php" class="nav-item nav-link">Home</a>
+                        <a href="#About_section" class="nav-item nav-link">About</a>
+                        <a href="#services_section" class="nav-item nav-link">Service</a>
+                        <a href="#contactus_section" class="nav-item nav-link">Contact</a>
+                        <a href="login/login.php" class="nav-item nav-link"><i class="fa fa-user"></i></a>
+                        <a href="login/signup.php" class="nav-item nav-link">signup</a> <!-- Added logout button -->
+                        <a href="#" class="nav-item nav-link">
+                            <div id="google_translate_element"></div>
+                        </a>
+                    </div>
                 </div>
-                <a class="get-started" href="login/signup.php">Login</a>
-                <a class="get-started" href="login/signup.php">Signup</a>
-                <img src="images/icon/menu.png" class="menu" alt="menu">
             </nav>
+
             <div class="head-container">
                 <div class="quote">
                     <p>The beautiful thing about learning is that nobody can take it away from you</p>
@@ -120,19 +127,9 @@
                 </div>
             </div>
 
-            <div class="content-container">
-    <div class="image-section">
-        <img src="img/carousel-2.jpg" alt="Inspiration Image">
-    </div>
-    <div class="text-section">
-        <p>"The journey of a thousand miles begins with one step."</p>
-        <h5>Education is not just about learning facts, but the training of the mind to think. It’s the foundation upon which we build our future, shaping skills, values, and habits that guide us through life.</h5>
-    </div>
-</div>
-
 
         </header>
-        
+
 
         <!-- PORTFOLIO -->
         <div class="diffSection" id="About_section">
@@ -180,38 +177,38 @@
 
 
 
-     <!-- SERVICES -->
-<div class="service-swipe">
-    <div class="diffSection" id="services_section">
-        <center>
-            <p style="font-size: 50px; padding: 100px; padding-bottom: 40px; color: #fff;">Services</p>
-        </center>
-    </div>
-    <a href="subjects/computer_courses.html">
-        <div class="s-card">
-            <i class="fas fa-laptop-code" style="font-size: 50px;"></i>
-            <p>Scholarships and Help</p>
+        <!-- SERVICES -->
+        <div class="service-swipe">
+            <div class="diffSection" id="services_section">
+                <center>
+                    <p style="font-size: 50px; padding: 100px; padding-bottom: 40px; color: #fff;">Services</p>
+                </center>
+            </div>
+            <a href="subjects/computer_courses.html">
+                <div class="s-card">
+                    <i class="fas fa-laptop-code" style="font-size: 50px;"></i>
+                    <p>Scholarships and Help</p>
+                </div>
+            </a>
+            <a href="subjects/jee.html">
+                <div class="s-card">
+                    <i class="fas fa-brain" style="font-size: 50px;"></i>
+                    <p>Technology Resources</p>
+                </div>
+            </a>
+            <a href="#">
+                <div class="s-card">
+                    <i class="fas fa-book-open" style="font-size: 50px;"></i>
+                    <p>Policy Review and Improvement</p>
+                </div>
+            </a>
+            <a href="subjects/jee.html#sample_papers">
+                <div class="s-card">
+                    <i class="fas fa-life-ring" style="font-size: 50px;"></i>
+                    <p>Student Support Services</p>
+                </div>
+            </a>
         </div>
-    </a>
-    <a href="subjects/jee.html">
-        <div class="s-card">
-            <i class="fas fa-brain" style="font-size: 50px;"></i>
-            <p>Technology Resources</p>
-        </div>
-    </a>
-    <a href="#">
-        <div class="s-card">
-            <i class="fas fa-book-open" style="font-size: 50px;"></i>
-            <p>Policy Review and Improvement</p>
-        </div>
-    </a>
-    <a href="subjects/jee.html#sample_papers">
-        <div class="s-card">
-            <i class="fas fa-life-ring" style="font-size: 50px;"></i>
-            <p>Student Support Services</p>
-        </div>
-    </a>
-</div>
 
 
         <!-- CONTACT US -->

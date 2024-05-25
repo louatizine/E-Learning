@@ -23,7 +23,7 @@ if(isset($_SESSION['id'])){
                                     </div>';
                     } else {
                         $output .= '<div class="chat incoming">
-                                    <img src="php/images/'. htmlspecialchars($row['pp']) .'" alt="">
+                                    <img src="../login/img/'. htmlspecialchars($row['pp']) .'" alt="">
                                     <div class="details">
                                         <p>'. htmlspecialchars($row['msg']) .'</p>
                                     </div>

@@ -1,6 +1,7 @@
 <?php
-session_start();
+    session_start();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,9 +19,7 @@ session_start();
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -31,6 +30,26 @@ session_start();
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
    
+    <style>
+        /* Chat button style */
+        .chat-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #721c04;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000; 
+        }
+    </style>
 </head>
 
 <body>
@@ -39,17 +58,15 @@ session_start();
     <?php include '../indexFolder/services.php'; ?>
     <?php include '../indexFolder/Banner.php'; ?>
     <?php include '../indexFolder/category.php'; ?>
-   <?php include '../indexFolder/courses.php'; ?>
-
-
-
-
-    <?php include '../indexFolder/faq.php'; ?>
-
-
+    <?php include '../indexFolder/courses.php'; ?>
     <?php include("../repite/footer.php"); ?>
 
+    <!-- Chat button -->
+    <a href="../chat/login.php" class="chat-button"><i class="bi bi-chat-fill"></i></a>
+
+    <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="lib/wow/wow.min.js"></script>

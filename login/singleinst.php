@@ -1,14 +1,13 @@
 <?php
 session_start();
 
+// Include the database connection file
 include('../connexion/conx.php');
 
-
-
 // Check if the course ID is provided in the URL
-if (isset($_GET['course_id'])) {
+if (isset($_GET['id'])) {
     // Sanitize the input to prevent SQL injection
-    $course_id = mysqli_real_escape_string($conn, $_GET['course_id']);
+    $course_id = mysqli_real_escape_string($conn, $_GET['id']);
 
     // Fetch course details from the database based on the provided course ID
     $sql = "SELECT * FROM popular_courses WHERE id = $course_id";
@@ -17,20 +16,13 @@ if (isset($_GET['course_id'])) {
     // Check if a course is found with the provided ID
     if ($result && mysqli_num_rows($result) > 0) {
         $course = mysqli_fetch_assoc($result);
-
-        // Fetch instructor/user information based on the instructor ID
-        $instructor_id = $course['instructor_id'];
-        $instructor_sql = "SELECT * FROM user_form WHERE id = $instructor_id";
-        $instructor_result = mysqli_query($conn, $instructor_sql);
-
-        if ($instructor_result && mysqli_num_rows($instructor_result) > 0) {
-            $instructor = mysqli_fetch_assoc($instructor_result);
-        }
     } else {
+        // Handle course not found
         echo "Course not found";
         exit;
     }
 } else {
+    // Handle course ID not provided
     echo "Course ID not provided";
     exit;
 }
@@ -43,15 +35,9 @@ mysqli_close($conn);
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="google-translate-customization" content="9f841e7780177523-3214ceb76f765f38-gc38c6fe6f9d06436-c">
-    </meta>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $course['title']; ?></title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
-
     <!-- Favicon -->
     <link href="img/icon.png" rel="icon">
 
@@ -69,64 +55,14 @@ mysqli_close($conn);
     <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
 </head>
-<style>
-    .tabs ul li {
-        list-style-type: none;
-    }
-
-    .tabs ul li a {
-        font-size: 25px;
-        color: #4e4e4e !important;
-        font-weight: 500;
-    }
-
-    .tabs ul li a.active {
-        color: #f69050 !important;
-    }
-
-    .tabs ul li a:hover {
-        color: #f69050 !important;
-    }
-
-    #more {
-        display: none;
-    }
-
-    button {
-        border: none;
-        color: #f69050;
-    }
-</style>
 
 <body>
-
-
-<?php include("../repite/user_header.php"); ?>
-
-
-    <!-- Header Start -->
-    <div class="container-fluid bg-primary py-5 mb-5 page-header">
-        <div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">Course</h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center">
-                            <li class="breadcrumb-item"><a class="text-white" href="index.php">Home</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="courses.php">Course</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page"><?php echo $course['title']; ?></li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Header End -->
+    <!-- Header -->
+    <?php include("../repite/InstroctorHeader.php"); ?>
 
     <!-- Course Detail Start -->
     <div class="container-xxl py-2">
@@ -141,29 +77,10 @@ mysqli_close($conn);
                                 <div class="d-flex">
                                     <small><i class="fa fa-star text-warning"></i> 4.6</small>
                                     <small style="margin-left: 15px;"><i class="fa fa-user-graduate"></i> 5.8L+ Learners</small>
-                                    <small style="margin-left: 15px;"><i class="fa fa-user"></i><?php echo $course['statut']; ?></small>
+                                    <small style="margin-left: 15px;"><i class="fa fa-user"></i><?php echo $course['level']; ?></small>
                                     <small style="margin-left: 15px;"><i class="fa fa-clock me-2"></i> <?php echo $course['nb_heure']; ?></small>
                                 </div>
-                                <div class="image-div text-left mt-3">
-                                    <?php $image = $instructor["pp"]; ?>
-                                    <img src="img/<?php echo $image; ?>" title="<?php echo $image; ?>" alt="" style="height: 40px; width: 40px; border-radius: 50%;">
-                                    <span style="margin-left: 10px;"><b>Instructor Name </b><?php echo $instructor['uname']; ?> <?php echo $instructor['uprenom']; ?></span>
-                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="container-fluid wow fadeInUp mt-5 tabs">
-                        <!-- Tab panes -->
-                        <div class="tab-content mt-4">
-                            <div class="tab-pane container active" id="Overview">
-                                <h2>About this Course</h2>
-                                <p><?php echo $course['description']; ?></p>
-                                <h2 class="mt-4">Skills you'll gain</h2>
-                                <span class="badge rounded-pill text-white bg-primary px-4 py-2 m-2" style="font-size: 15px; font-weight: normal;">Structure pages with HTML</span>
-                                <span class="badge rounded-pill text-white bg-primary px-4 py-2 m-2" style="font-size: 15px; font-weight: normal;">Present data with tables</span>
-                                <span class="badge rounded-pill text-white bg-primary px-4 py-2 m-2" style="font-size: 15px; font-weight: normal;">Write cleaner HTML</span>
-                            </div>
-                        
                         </div>
                     </div>
                 </div>
@@ -200,11 +117,10 @@ mysqli_close($conn);
             </div>
         </div>
     </div>
-
     <!-- Course Detail End -->
-    <!-- Footer Start -->
+
+    <!-- Footer -->
     <?php include("../repite/footer.php"); ?>
-    <!-- Footer End -->
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>

@@ -44,34 +44,34 @@ mysqli_close($conn);
     <!-- Custom CSS Styles -->
     <style>
         .course-item {
-    border-radius: 15px;
-    border: 1px solid #e0e0e0;
-    transition: transform 0.3s ease;
-}
+            border-radius: 15px;
+            border: 1px solid #e0e0e0;
+            transition: transform 0.3s ease;
+        }
 
-.course-item:hover {
-    transform: translateY(-5px);
-}
+        .course-item:hover {
+            transform: translateY(-5px);
+        }
 
-.course-item .p-4 {
-    background-color: #fff;
-}
+        .course-item .p-4 {
+            background-color: #fff;
+        }
 
-.course-item h5 {
-    color: #333;
-    font-size: 1.2rem;
-    font-weight: bold;
-}
+        .course-item h5 {
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
 
-.course-item p {
-    color: #666;
-    font-size: 0.9rem;
-}
+        .course-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
 
-.course-item strong {
-    font-weight: bold;
-    margin-right: 5px;
-}
+        .course-item strong {
+            font-weight: bold;
+            margin-right: 5px;
+        }
     </style>
 </head>
 
@@ -86,12 +86,12 @@ mysqli_close($conn);
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3 py-3">
             <?php foreach ($enrolled_courses as $course): ?>
                 <div class="card">
-  <h5 class="card-header"> <?php echo $course['statut']; ?></h5>
-  <div class="card-body">
-    <h5 class="card-title"><?php echo $course['title']; ?></h5>
-    <a href="../login/single.php?course_id=<?php echo $course['course_id']; ?>" class="btn btn-primary">See More</a>
-  </div>
-</div>
+                    <h5 class="card-header"><?php echo $course['statut']; ?></h5>
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $course['title']; ?></h5>
+                        <a href="../login/single.php?course_id=<?php echo $course['course_id']; ?>" class="btn btn-primary">See More</a>
+                    </div>
+                </div>
             <?php endforeach; ?>
         </div>
     </div>
@@ -100,6 +100,4 @@ mysqli_close($conn);
 <?php include("../repite/footer.php"); ?>
 
 </body>
-
 </html>
-Écrire à Eya Ben Attig

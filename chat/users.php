@@ -17,7 +17,7 @@ if(!isset($_SESSION['id'])){
               $row = mysqli_fetch_assoc($sql);
             }
           ?>
-          <img src="php/images/<?php echo $row['pp']; ?>" alt="">
+          <img src="../login/img/<?php echo $row['pp']; ?>" alt="">
           <div class="details">
             <span><?php echo $row['uname']. " " . $row['uprenom'] ?></span>
             <p><?php echo $row['status']; ?></p>
@@ -31,26 +31,6 @@ if(!isset($_SESSION['id'])){
         <button><i class="fas fa-search"></i></button>
       </div>
       <div class="users-list">
-        <?php
-          // Fetch all users except the current user
-          $currentUserId = $_SESSION['id'];
-          $query = "SELECT * FROM user_form WHERE id != $currentUserId";
-          $result = mysqli_query($conn, $query);
-          if(mysqli_num_rows($result) > 0){
-            while($user = mysqli_fetch_assoc($result)){
-              echo "<div class='user'>";
-              echo "<img src='php/images/{$user['pp']}' alt=''>";
-              echo "<div class='details'>";
-              // Make the user name clickable
-               echo "<span><a href='chat.php?id={$user['id']}'>{$user['uname']} {$user['uprenom']}</a></span>";
-              echo "<p>{$user['status']}</p>";
-              echo "</div>";
-              echo "</div>";
-            }
-          } else {
-            echo "<p>No users found.</p>";
-          }
-        ?>
       </div>
     </section>
   </div>
